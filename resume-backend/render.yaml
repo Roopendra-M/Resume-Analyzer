@@ -1,0 +1,24 @@
+web:
+  - type: web
+    name: resume-analyzer-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "./build.sh"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    healthCheckPath: /
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.19
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.0-flash
+      - key: ALLOW_ORIGINS
+        value: "*"

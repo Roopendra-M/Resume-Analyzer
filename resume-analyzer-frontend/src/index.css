@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(15, 23, 42, 0.6);
+    --glass-shine: rgba(255, 255, 255, 0.05);
+  }
+
+  body {
+    @apply bg-deep-navy text-lavender-gray antialiased selection:bg-electric-violet selection:text-white overflow-x-hidden;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 20%),
+      radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 20%);
+    background-attachment: fixed;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-deep-navy;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-700 rounded-full transition-colors duration-300;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-electric-violet;
+  }
+}
+
+@layer components {
+
+  /* Glassmorphism Cards */
+  .glass-card {
+    @apply bg-glass-black backdrop-blur-xl border border-white/5 shadow-glass rounded-2xl relative overflow-hidden transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply border-white/10 shadow-glass-hover transform -translate-y-1;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-electric-violet rounded-xl hover:shadow-neon focus:outline-none focus:ring-2 focus:ring-electric-violet/50;
+  }
+
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/20;
+  }
+
+  /* Inputs */
+  .input-field {
+    @apply w-full bg-deep-navy/50 border border-slate-700 rounded-xl px-5 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-electric-violet focus:ring-1 focus:ring-electric-violet transition-all duration-300;
+  }
+
+  /* Typography */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-lavender-gray to-slate-400;
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-electric-violet to-bright-teal;
+  }
+
+  /* Utilities */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+  }
+
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .glow-border {
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.3), inset 0 0 15px rgba(124, 58, 237, 0.1);
+  }
+
+  .skeleton {
+    @apply animate-pulse bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-[length:200%_100%];
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  @keyframes gradient-shift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+
+    50% {
+      transform: scale(1.05);
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+}
